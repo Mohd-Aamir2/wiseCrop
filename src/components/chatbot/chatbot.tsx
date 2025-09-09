@@ -60,10 +60,12 @@ export function Chatbot() {
     form.reset();
 
     try {
+      // Previous messages are needed for context
       const history = messages.map(m => ({
         role: m.sender === 'bot' ? 'model' : 'user',
-        content: [{ text: m.text }]
+        content: m.text
       }));
+
       const botResponse = await sendMessage(values.message, history);
       
       const botMessage: Message = {

@@ -38,7 +38,7 @@ const chatFlow = ai.defineFlow(
     async (input) => {
         const history: History = input.history.map( (msg: any) => ({ // eslint-disable-line
             role: msg.role,
-            content: msg.content
+            content: [part(msg.content)]
         }));
 
         // In a real app, this would be fetched for the specific user
@@ -62,8 +62,8 @@ Here is the user's farm information. Use this to answer their questions about th
 Farm Profile:
 - Location: ${farmProfile.location}
 - Size: ${farmProfile.farmSize} acres
-- Soil Type: ${farmProfile.soilType}
-- Crop Preference: ${farmProfile.cropPreference}
+- SoilType: ${farmProfile.soilType}
+- Crop Preference: ${farm.cropPreference}
 
 Current Weather:
 - Temperature: ${weather.currentTemperature}°C
