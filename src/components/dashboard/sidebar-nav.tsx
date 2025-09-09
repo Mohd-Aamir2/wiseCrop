@@ -68,10 +68,14 @@ export function SidebarNav() {
         <SidebarSeparator />
         <SidebarMenu>
            <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Settings">
-                <Settings />
-                <span>Settings</span>
-              </SidebarMenuButton>
+              <Link href="/dashboard/settings">
+                <SidebarMenuButton tooltip="Settings" isActive={pathname === '/dashboard/settings'} asChild>
+                  <div>
+                    <Settings />
+                    <span>Settings</span>
+                  </div>
+                </SidebarMenuButton>
+              </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <Link href="mailto:support@cropwise.com">
