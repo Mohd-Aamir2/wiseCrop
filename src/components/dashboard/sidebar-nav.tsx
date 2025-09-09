@@ -21,6 +21,7 @@ import {
   LifeBuoy,
   Settings,
   HeartPulse,
+  Bot,
 } from 'lucide-react';
 import { Logo } from '@/components/logo';
 
@@ -30,6 +31,7 @@ const navItems = [
   { href: '/dashboard/health-report', icon: <HeartPulse />, label: 'Health Report' },
   { href: '/dashboard/alerts', icon: <Bell />, label: 'Alerts' },
   { href: '/dashboard/feedback', icon: <MessageSquare />, label: 'Feedback' },
+  { href: '/dashboard/chatbot', icon: <Bot />, label: 'Chatbot' },
 ];
 
 export function SidebarNav() {
@@ -44,7 +46,7 @@ export function SidebarNav() {
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <Link href={item.href}>
+              <Link href={item.href} legacyBehavior passHref>
                 <SidebarMenuButton
                   isActive={pathname === item.href}
                   tooltip={item.label}
@@ -76,7 +78,7 @@ export function SidebarNav() {
               </SidebarMenuButton>
           </SidebarMenuItem>
            <SidebarMenuItem>
-            <Link href="/">
+            <Link href="/" legacyBehavior passHref>
                 <SidebarMenuButton tooltip="Log Out" asChild>
                   <div>
                     <LogOut />
