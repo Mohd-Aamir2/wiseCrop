@@ -10,6 +10,7 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 import { part, History, MessageData } from 'genkit';
+import { dummyWeather } from '@/lib/dummy-data';
 
 const ChatInputSchema = z.object({
     message: z.string().describe("The user's message."),
@@ -40,15 +41,44 @@ const chatFlow = ai.defineFlow(
             content: msg.content
         }));
 
+        // In a real app, this would be fetched for the specific user
+        const farmProfile = {
+            farmSize: 50,
+            soilType: "loamy",
+            location: "Central Valley, California",
+            cropPreference: "High-yield cash crop"
+        };
+        
+        const weather = dummyWeather;
+
+        const systemPrompt = `You are an expert agricultural advisor bot named CropWise.
+Your goal is to provide helpful and accurate information to farmers.
+You must respond to the user in the same language they used.
+Supported languages are: English, Hindi, Tamil, Marathi, and Telugu.
+If you don't know the answer, say that you don't know.
+
+Here is the user's farm information. Use this to answer their questions about their farm, crops, soil, and weather.
+
+Farm Profile:
+- Location: ${farmProfile.location}
+- Size: ${farmProfile.farmSize} acres
+- Soil Type: ${farmProfile.soilType}
+- Crop Preference: ${farmProfile.cropPreference}
+
+Current Weather:
+- Temperature: ${weather.currentTemperature}°C
+- Humidity: ${weather.humidity}%
+- Condition: ${weather.weatherCondition}
+
+3-Day Forecast:
+${weather.temperatureForecast.map(f => `- ${f.date}: ${f.temperature}°C`).join('\n')}
+`;
+
         const llmResponse = await ai.generate({
             prompt: input.message,
             history: history,
             config: {
-                system: `You are an expert agricultural advisor bot named CropWise.
-Your goal is to provide helpful and accurate information to farmers.
-You must respond to the user in the same language they used.
-Supported languages are: English, Hindi, Tamil, Marathi, and Telugu.
-If you don't know the answer, say that you don't know.`
+                system: systemPrompt,
             },
             output: {
                 schema: ChatOutputSchema,
