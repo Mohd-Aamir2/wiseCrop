@@ -41,9 +41,10 @@ export function Chatbot() {
 
   useEffect(() => {
     if (scrollAreaRef.current) {
-        // A bit of a hack to get the viewport.
-        const viewport = scrollAreaRef.current.children[0].children[0];
-        viewport.scrollTop = viewport.scrollHeight;
+        const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+        if (viewport) {
+            viewport.scrollTop = viewport.scrollHeight;
+        }
     }
   }, [messages]);
 
