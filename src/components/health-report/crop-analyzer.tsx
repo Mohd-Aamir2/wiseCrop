@@ -88,8 +88,8 @@ export function CropAnalyzer() {
     getCameraPermission();
 
     return () => {
-        const stream = videoRef.current?.srcObject as MediaStream;
-        if (stream) {
+        if (videoRef.current && videoRef.current.srcObject) {
+            const stream = videoRef.current.srcObject as MediaStream;
             stream.getTracks().forEach(track => track.stop());
         }
     }
@@ -111,6 +111,17 @@ export function CropAnalyzer() {
     if (videoRef.current && canvasRef.current) {
         const video = videoRef.current;
         const canvas = canvasRef.current;
+        
+        // Ensure video is playing before capturing
+        if (video.readyState < video.HAVE_CURRENT_DATA) {
+            toast({
+                variant: "destructive",
+                title: "Camera Not Ready",
+                description: "The camera is still initializing. Please try again in a moment.",
+            });
+            return;
+        }
+
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         const context = canvas.getContext('2d');
