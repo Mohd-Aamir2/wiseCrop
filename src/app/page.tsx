@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Logo } from '@/components/logo';
 import { CheckCircle2, Lightbulb, Bell, BarChart2 } from 'lucide-react';
+import { Copyright } from '@/components/copyright';
 
 export default function Home() {
   const features = [
@@ -110,7 +111,7 @@ export default function Home() {
       <footer className="border-t">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row justify-between items-center">
           <Logo />
-          <p className="text-sm text-muted-foreground mt-4 sm:mt-0">&copy; {new Date().getFullYear()} CropWise. All rights reserved.</p>
+          <Copyright />
         </div>
       </footer>
     </div>

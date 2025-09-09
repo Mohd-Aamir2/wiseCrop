@@ -63,7 +63,7 @@ Farm Profile:
 - Location: ${farmProfile.location}
 - Size: ${farmProfile.farmSize} acres
 - SoilType: ${farmProfile.soilType}
-- Crop Preference: ${farm.cropPreference}
+- Crop Preference: ${farmProfile.cropPreference}
 
 Current Weather:
 - Temperature: ${weather.currentTemperature}°C
