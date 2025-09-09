@@ -53,7 +53,7 @@ export function MultiStepRegisterForm() {
       name: "",
       email: "",
       password: "",
-      farmSize: undefined,
+      farmSize: "" as any,
       soilType: undefined,
       location: "",
       cropPreference: "",
