@@ -37,7 +37,7 @@ const chatFlow = ai.defineFlow(
     async (input) => {
         const history: History = input.history.map( (msg: any) => ({ // eslint-disable-line
             role: msg.role,
-            content: msg.content.map( (c: any) => part(c)) // eslint-disable-line
+            content: msg.content
         }));
 
         const llmResponse = await ai.generate({
