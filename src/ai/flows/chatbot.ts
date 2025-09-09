@@ -28,21 +28,6 @@ export async function chat(input: ChatInput): Promise<ChatOutput> {
   return chatFlow(input);
 }
 
-const prompt = ai.definePrompt({
-    name: 'chatbotPrompt',
-    input: { schema: ChatInputSchema },
-    output: { schema: ChatOutputSchema },
-    prompt: `You are an expert agricultural advisor bot named CropWise.
-Your goal is to provide helpful and accurate information to farmers.
-You must respond to the user in the same language they used.
-Supported languages are: English, Hindi, Tamil, Marathi, and Telugu.
-If you don't know the answer, say that you don't know.
-
-Here is the user's message:
-{{{message}}}
-`
-});
-
 const chatFlow = ai.defineFlow(
     {
         name: 'chatbotFlow',
@@ -56,15 +41,15 @@ const chatFlow = ai.defineFlow(
         }));
 
         const llmResponse = await ai.generate({
-            prompt: {
-                text: `You are an expert agricultural advisor bot named CropWise.
+            prompt: input.message,
+            history: history,
+            config: {
+                system: `You are an expert agricultural advisor bot named CropWise.
 Your goal is to provide helpful and accurate information to farmers.
 You must respond to the user in the same language they used.
 Supported languages are: English, Hindi, Tamil, Marathi, and Telugu.
 If you don't know the answer, say that you don't know.`
             },
-            history: history,
-            input: input.message,
             output: {
                 schema: ChatOutputSchema,
                 format: 'json',
