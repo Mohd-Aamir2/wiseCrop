@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
@@ -12,9 +13,11 @@ export function SoilHealthWidget() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Button variant="outline">
-          <Upload className="mr-2 h-4 w-4" />
-          Upload Report
+        <Button variant="outline" asChild>
+          <Link href="/dashboard/soil-health">
+            <Upload className="mr-2 h-4 w-4" />
+            Upload Report
+          </Link>
         </Button>
       </CardContent>
     </Card>
