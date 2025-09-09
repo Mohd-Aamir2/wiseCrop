@@ -74,10 +74,14 @@ export function SidebarNav() {
               </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Support">
-                <LifeBuoy />
-                <span>Support</span>
+            <Link href="mailto:support@cropwise.com">
+              <SidebarMenuButton tooltip="Support" asChild>
+                <div>
+                    <LifeBuoy />
+                    <span>Support</span>
+                </div>
               </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
            <SidebarMenuItem>
             <Link href="/">
