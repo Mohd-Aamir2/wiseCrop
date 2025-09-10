@@ -99,6 +99,32 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="py-20 md:py-28">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="text-center md:text-left">
+                        <h2 className="text-3xl md:text-4xl font-bold font-headline">The Future of Farming is Here</h2>
+                        <p className="mt-4 text-lg text-gray-600">
+                            Our platform utilizes cutting-edge AI and robotics concepts to provide you with the most advanced farming advice. We analyze data from various sources to give you a competitive edge.
+                        </p>
+                         <Button size="lg" className="mt-6" asChild>
+                            <Link href="#features">Explore Features</Link>
+                        </Button>
+                    </div>
+                    <div className="flex justify-center">
+                        <Image 
+                            src="https://thumbs.dreamstime.com/b/futuristic-robot-farmer-harvesting-potato-agriculture-futuristic-concept-android-robot-basket-potatoes-ai-generated-image-318485954.jpg"
+                            alt="Futuristic robot farmer harvesting potatoes"
+                            data-ai-hint="robot farmer"
+                            width={400}
+                            height={400}
+                            className="rounded-full aspect-square object-cover shadow-2xl border-8 border-white"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="features" className="py-20 md:py-28 bg-secondary">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
