@@ -113,9 +113,9 @@ export default function Home() {
                     </div>
                     <div className="flex justify-center">
                         <Image 
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTswo_dGvGa2APcC6qEHPO3nl9p53MvyPCx3Q&s"
-                            alt="Farmer using a tablet in a field"
-                            data-ai-hint="farmer technology"
+                            src="https://thumbs.dreamstime.com/b/futuristic-robot-farmer-harvesting-potato-agriculture-futuristic-concept-android-robot-basket-potatoes-ai-generated-image-318485954.jpg"
+                            alt="Futuristic robot farmer harvesting potatoes"
+                            data-ai-hint="robot farmer"
                             width={400}
                             height={400}
                             className="rounded-full aspect-square object-cover shadow-2xl border-8 border-white"
