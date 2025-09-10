@@ -70,7 +70,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="mt-16">
+            <div className="mt-16 relative">
               <Image
                 src="https://picsum.photos/1200/600"
                 alt="Lush green farm field"
@@ -79,6 +79,22 @@ export default function Home() {
                 height={600}
                 className="rounded-xl shadow-2xl mx-auto"
               />
+              <div className="absolute inset-0 bg-black/30 rounded-xl flex items-end p-8 text-white">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                        <p className="font-bold">Primary Livelihood</p>
+                        <p className="text-sm">Over 55% of India’s population depends on agriculture.</p>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                        <p className="font-bold">GDP Contribution</p>
+                        <p className="text-sm">Around 17–20% of India’s GDP comes from agriculture and allied sectors.</p>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                        <p className="font-bold">Global Rank</p>
+                        <p className="text-sm">India is second worldwide in farm output and first in net cropped area.</p>
+                    </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
