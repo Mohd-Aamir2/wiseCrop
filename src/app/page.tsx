@@ -72,12 +72,12 @@ export default function Home() {
             </div>
             <div className="mt-16 relative">
               <Image
-                src="https://picsum.photos/seed/5/1200/600"
-                alt="A vibrant wheat crop field under a clear sky."
-                data-ai-hint="wheat field"
+                src="https://media.istockphoto.com/id/806276128/photo/farmer-ploughing-rice-field-at-sunrise.jpg?s=612x612&w=0&k=20&c=t5IUOH9GWrI1lAz4gXPJnwjR9WUxQxdmSnIJxk_XDiQ="
+                alt="Farmer ploughing a rice field with two cattle at sunrise."
+                data-ai-hint="farmer ploughing"
                 width={1200}
                 height={600}
-                className="rounded-xl shadow-2xl mx-auto"
+                className="rounded-xl shadow-2xl mx-auto object-cover h-[600px]"
               />
               <div className="absolute inset-0 bg-black/30 rounded-xl flex items-end p-8 text-white">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
