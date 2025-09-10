@@ -72,9 +72,9 @@ export default function Home() {
             </div>
             <div className="mt-16 relative">
               <Image
-                src="https://picsum.photos/1200/600"
-                alt="Lush green farm field"
-                data-ai-hint="farm field"
+                src="https://picsum.photos/seed/2/1200/600"
+                alt="A village farming scene with farmers working in the field."
+                data-ai-hint="village farming"
                 width={1200}
                 height={600}
                 className="rounded-xl shadow-2xl mx-auto"
