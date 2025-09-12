@@ -21,7 +21,7 @@ export default function DashboardPage() {
               <CardHeader>
                 <CardTitle>Get Your AI Crop Recommendation</CardTitle>
                 <CardDescription>
-                  Let our AI analyze your farm data to suggest the best crops for the upcoming season.
+                  Let our AI analyze  your farm data to suggest the best crops for the upcoming season.
                 </CardDescription>
               </CardHeader>
               <CardContent>

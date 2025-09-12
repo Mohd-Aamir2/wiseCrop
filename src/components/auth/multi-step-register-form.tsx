@@ -98,9 +98,9 @@ export function MultiStepRegisterForm() {
         <CardDescription>Join CropWise to get personalized farm intelligence.</CardDescription>
         <Progress value={(currentStep + 1) / steps.length * 100} className="mt-2" />
       </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form className="space-y-6">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(processForm)} className="space-y-6">
+          <CardContent>
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}
@@ -179,19 +179,19 @@ export function MultiStepRegisterForm() {
                 )}
               </motion.div>
             </AnimatePresence>
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter>
-        <div className="flex justify-between w-full">
-            <Button type="button" variant="outline" onClick={prev} disabled={currentStep === 0}>
-                Previous
-            </Button>
-            <Button type="button" onClick={next}>
-                {currentStep === steps.length - 1 ? "Finish Registration" : "Next"}
-            </Button>
-        </div>
-      </CardFooter>
+          </CardContent>
+          <CardFooter>
+            <div className="flex justify-between w-full">
+                <Button type="button" variant="outline" onClick={prev} disabled={currentStep === 0}>
+                    Previous
+                </Button>
+                <Button type="button" onClick={next}>
+                    {currentStep === steps.length - 1 ? "Finish Registration" : "Next"}
+                </Button>
+            </div>
+          </CardFooter>
+        </form>
+      </Form>
       <div className="p-6 pt-0 text-center text-sm">
           Already have an account?{" "}
           <Link href="/login" className="underline">
