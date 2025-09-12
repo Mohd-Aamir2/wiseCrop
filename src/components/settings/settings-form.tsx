@@ -26,7 +26,7 @@ const farmSchema = z.object({
 
 const settingsSchema = profileSchema.merge(farmSchema);
 
-export function SettingsForm() {
+export function EditProfileForm() {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof settingsSchema>>({
@@ -46,7 +46,7 @@ export function SettingsForm() {
     // In a real app, you'd send this to your backend to save the user's settings.
     console.log(values);
     toast({
-      title: "Settings Saved",
+      title: "Profile Saved",
       description: "Your changes have been successfully saved.",
     });
   }

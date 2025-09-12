@@ -19,7 +19,7 @@ import {
   MessageSquare,
   LogOut,
   LifeBuoy,
-  Settings,
+  User,
   HeartPulse,
   Bot,
   TestTube2,
@@ -68,11 +68,11 @@ export function SidebarNav() {
         <SidebarSeparator />
         <SidebarMenu>
            <SidebarMenuItem>
-              <Link href="/dashboard/settings">
-                <SidebarMenuButton tooltip="Settings" isActive={pathname === '/dashboard/settings'} asChild>
+              <Link href="/dashboard/edit-profile">
+                <SidebarMenuButton tooltip="Edit Profile" isActive={pathname === '/dashboard/edit-profile'} asChild>
                   <div>
-                    <Settings />
-                    <span>Settings</span>
+                    <User />
+                    <span>Edit Profile</span>
                   </div>
                 </SidebarMenuButton>
               </Link>
