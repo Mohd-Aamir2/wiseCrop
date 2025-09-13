@@ -17,7 +17,7 @@ export async function sendMessage(message: string, history: any[]): Promise<Chat
        return { text: "I'm sorry, I couldn't generate a response." };
     }
 
-    const ttsResponse = await textToSpeech({ text: chatResponse.response });
+    const ttsResponse = await textToSpeech({ text: chatResponse.response, voice: chatResponse.voice });
 
     return {
       text: chatResponse.response,

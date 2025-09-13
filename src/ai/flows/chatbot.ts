@@ -21,6 +21,7 @@ export type ChatInput = z.infer<typeof ChatInputSchema>;
 
 const ChatOutputSchema = z.object({
   response: z.string().describe("The AI's response."),
+  voice: z.enum(["Algenib", "Sirius", "Antares", "Spica", "Canopus"]).describe("The voice to use for the text-to-speech response."),
 });
 export type ChatOutput = z.infer<typeof ChatOutputSchema>;
 
@@ -57,6 +58,13 @@ You must respond to the user in the same language they used.
 Supported languages are: English, Hindi, Tamil, Marathi, and Telugu.
 If you don't know the answer, say that you don't know.
 
+When you respond, you must also select the appropriate voice for the language you are speaking. Use the following voices:
+- English: 'Algenib'
+- Hindi: 'Sirius'
+- Tamil: 'Antares'
+- Marathi: 'Spica'
+- Telugu: 'Canopus'
+
 Here is the user's farm information. Use this to answer their questions about their farm, crops, soil, and weather.
 
 Farm Profile:
@@ -89,7 +97,7 @@ ${weather.temperatureForecast.map(f => `- ${f.date}: ${f.temperature}°C`).join(
         const output = llmResponse.output;
 
         if (!output) {
-            return { response: "I'm sorry, I couldn't generate a response." };
+            return { response: "I'm sorry, I couldn't generate a response.", voice: "Algenib" };
         }
 
         return output;
