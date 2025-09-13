@@ -23,6 +23,7 @@ import {
   HeartPulse,
   Bot,
   TestTube2,
+  DollarSign,
 } from 'lucide-react';
 import { Logo } from '@/components/logo';
 
@@ -31,6 +32,7 @@ const navItems = [
   { href: '/dashboard/recommendations', icon: <Lightbulb />, label: 'Recommendations' },
   { href: '/dashboard/health-report', icon: <HeartPulse />, label: 'Health Report' },
   { href: '/dashboard/soil-health', icon: <TestTube2 />, label: 'Soil Health' },
+  { href: '/dashboard/market-price', icon: <DollarSign />, label: 'Market Prices' },
   { href: '/dashboard/alerts', icon: <Bell />, label: 'Alerts' },
   { href: '/dashboard/feedback', icon: <MessageSquare />, label: 'Feedback' },
   { href: '/dashboard/chatbot', icon: <Bot />, label: 'Chatbot' },

@@ -13,3 +13,12 @@ export interface HistoricalOutcome {
   yield: number;
   fertilizerUsed: string;
 }
+
+export interface MarketPrice {
+  id: string;
+  crop: string;
+  price: number;
+  unit: string;
+  change: number;
+  location: string;
+}

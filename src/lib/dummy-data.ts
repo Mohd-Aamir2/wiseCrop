@@ -1,4 +1,4 @@
-import type { Weather, HistoricalOutcome } from '@/lib/types';
+import type { Weather, HistoricalOutcome, MarketPrice } from '@/lib/types';
 
 export const dummyWeather: Weather = {
   currentTemperature: 28,
@@ -47,4 +47,15 @@ export const dummyAlerts = [
     description: 'The government has announced a new subsidy for organic farming. Check eligibility now.',
     date: '2024-07-28',
   },
+];
+
+export const dummyMarketPrices: MarketPrice[] = [
+    { id: '1', crop: 'Wheat', price: 2050, unit: 'quintal', change: 1.2, location: 'Mumbai' },
+    { id: '2', crop: 'Rice (Basmati)', price: 3500, unit: 'quintal', change: -0.5, location: 'Delhi' },
+    { id: '3', crop: 'Corn', price: 1800, unit: 'quintal', change: 2.1, location: 'Bangalore' },
+    { id: '4', crop: 'Soybean', price: 4200, unit: 'quintal', change: 0.8, location: 'Indore' },
+    { id: '5', crop: 'Cotton', price: 5800, unit: 'quintal', change: -1.0, location: 'Nagpur' },
+    { id: '6', crop: 'Sugarcane', price: 315, unit: 'quintal', change: 0.3, location: 'Pune' },
+    { id: '7', crop: 'Tomato', price: 25, unit: 'kg', change: 5.5, location: 'Kolkata' },
+    { id: '8', crop: 'Onion', price: 30, unit: 'kg', change: -2.3, location: 'Nashik' },
 ];
