@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Logo } from '@/components/logo';
 import { CheckCircle2, Lightbulb, Bell, BarChart2 } from 'lucide-react';
 import { Copyright } from '@/components/copyright';
+import { LanguageSelector } from '@/components/language-selector';
 
 export default function Home() {
   const features = [
@@ -34,7 +35,8 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <Logo />
-        <nav className="flex items-center gap-4">
+        <nav className="flex items-center gap-2">
+          <LanguageSelector />
           <Button variant="ghost" asChild>
             <Link href="/login">Login</Link>
           </Button>
