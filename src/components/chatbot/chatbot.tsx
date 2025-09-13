@@ -13,7 +13,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Send, Bot, User, Loader2, Volume2 } from "lucide-react";
+import { Send, Bot, User, Loader2, Volume2, Mic, MicOff } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const chatSchema = z.object({
   message: z.string().min(1, "Message cannot be empty."),
@@ -26,18 +27,59 @@ type Message = {
   audio?: string;
 };
 
+// Add this interface to handle vendor prefixes for SpeechRecognition
+interface CustomWindow extends Window {
+  SpeechRecognition: any;
+  webkitSpeechRecognition: any;
+}
+declare const window: CustomWindow;
+
+
 export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const recognitionRef = useRef<any>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
-    // Send an initial message from the bot
     setMessages([
         { id: "1", text: "Hello! How can I help you today?", sender: "bot" }
     ]);
-  }, []);
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'en-US';
+
+      recognitionRef.current.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        form.setValue("message", transcript);
+        setIsListening(false);
+        // Automatically submit the form after transcription
+        form.handleSubmit(onSubmit)();
+      };
+
+      recognitionRef.current.onerror = (event: any) => {
+        console.error("Speech recognition error", event.error);
+        toast({
+          variant: "destructive",
+          title: "Voice Recognition Error",
+          description: "There was an error with speech recognition. Please try again.",
+        });
+        setIsListening(false);
+      };
+      
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+
+    }
+  }, [toast]);
 
   const form = useForm<z.infer<typeof chatSchema>>({
     resolver: zodResolver(chatSchema),
@@ -75,7 +117,6 @@ export function Chatbot() {
     form.reset();
 
     try {
-      // Previous messages are needed for context
       const history = messages.map(m => ({
         role: m.sender === 'bot' ? 'model' : 'user',
         content: m.text
@@ -106,6 +147,25 @@ export function Chatbot() {
     if (audioRef.current) {
       audioRef.current.src = audioData;
       audioRef.current.play().catch(e => console.error("Audio playback failed:", e));
+    }
+  };
+
+  const handleVoiceSearch = () => {
+    if (!recognitionRef.current) {
+        toast({
+            variant: "destructive",
+            title: "Browser Not Supported",
+            description: "Your browser does not support voice recognition.",
+        });
+        return;
+    }
+
+    if (isListening) {
+        recognitionRef.current.stop();
+        setIsListening(false);
+    } else {
+        recognitionRef.current.start();
+        setIsListening(true);
     }
   };
 
@@ -171,7 +231,19 @@ export function Chatbot() {
                                 render={({ field }) => (
                                     <FormItem className="flex-1">
                                         <FormControl>
-                                            <Input placeholder="Type your message..." {...field} disabled={isLoading} />
+                                            <div className="relative">
+                                                <Input placeholder={isListening ? "Listening..." : "Type or say something..."} {...field} disabled={isLoading} />
+                                                <Button 
+                                                    type="button"
+                                                    size="icon"
+                                                    variant="ghost"
+                                                    className={cn("absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8", isListening ? "text-primary" : "")}
+                                                    onClick={handleVoiceSearch}
+                                                    disabled={isLoading}
+                                                >
+                                                    {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+                                                </Button>
+                                            </div>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

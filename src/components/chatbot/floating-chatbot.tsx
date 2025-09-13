@@ -56,7 +56,7 @@ export function FloatingChatbot() {
       <PopoverContent
         side="top"
         align="end"
-        className="w-[calc(100vw-2rem)] sm:w-[400px] h-[60vh] p-0 mr-2 mb-2 z-50 rounded-xl"
+        className="w-[calc(100vw-2rem)] sm:w-[400px] h-[70vh] max-h-[570px] p-0 mr-2 mb-2 z-50 rounded-xl"
         style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
       >
         <div className="h-full flex flex-col">
