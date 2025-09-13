@@ -95,7 +95,7 @@ export function MultiStepRegisterForm() {
     <Card className="w-full max-w-lg">
       <CardHeader>
         <CardTitle className="text-2xl font-headline">Create an Account</CardTitle>
-        <CardDescription>Join CropWise to get personalized farm intelligence.</CardDescription>
+        <CardDescription>Join Kisaan to get personalized farm intelligence.</CardDescription>
         <Progress value={(currentStep + 1) / steps.length * 100} className="mt-2" />
       </CardHeader>
       <Form {...form}>

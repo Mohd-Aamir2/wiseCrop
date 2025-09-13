@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'CropWise',
+  title: 'Kisaan',
   description: 'AI-powered Smart Crop Advisory for farmers.',
 };
 

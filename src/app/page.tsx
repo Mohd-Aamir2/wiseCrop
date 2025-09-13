@@ -61,7 +61,7 @@ export default function Home() {
                 AI-Powered Smart Crop Advisory for Modern Farmers
               </h1>
               <p className="mt-6 text-lg text-gray-600 dark:text-gray-300">
-                CropWise leverages artificial intelligence to provide you with actionable insights, helping you increase yield, reduce risk, and grow smarter.
+                Kisaan leverages artificial intelligence to provide you with actionable insights, helping you increase yield, reduce risk, and grow smarter.
               </p>
               <div className="mt-10 flex justify-center gap-4">
                 <Button size="lg" asChild>

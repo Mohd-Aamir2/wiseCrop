@@ -7,7 +7,7 @@ export function Logo({ className }: { className?: string }) {
       <div className="bg-primary p-1.5 rounded-md">
         <Leaf className="h-5 w-5 text-primary-foreground" />
       </div>
-      <span className="font-headline text-foreground">CropWise</span>
+      <span className="font-headline text-foreground">Kisaan</span>
     </div>
   );
 }

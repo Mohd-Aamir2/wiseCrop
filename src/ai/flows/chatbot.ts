@@ -51,7 +51,7 @@ const chatFlow = ai.defineFlow(
         
         const weather = dummyWeather;
 
-        const systemPrompt = `You are an expert agricultural advisor bot named CropWise.
+        const systemPrompt = `You are an expert agricultural advisor bot named Kisaan.
 Your goal is to provide helpful and accurate information to farmers.
 You must respond to the user in the same language they used.
 Supported languages are: English, Hindi, Tamil, Marathi, and Telugu.

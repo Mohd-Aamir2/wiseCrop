@@ -82,7 +82,7 @@ export function SidebarNav() {
               </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link href="mailto:support@cropwise.com">
+            <Link href="mailto:support@kisaan.com">
               <SidebarMenuButton tooltip="Support" asChild>
                 <div>
                     <LifeBuoy />

@@ -14,6 +14,6 @@ export function Copyright() {
   }
 
   return (
-    <p className="text-sm text-muted-foreground mt-4 sm:mt-0">&copy; {year} CropWise. All rights reserved.</p>
+    <p className="text-sm text-muted-foreground mt-4 sm:mt-0">&copy; {year} Kisaan. All rights reserved.</p>
   );
 }
