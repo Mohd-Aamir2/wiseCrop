@@ -11,15 +11,8 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { WeatherSchema } from '@/lib/types';
 
-const WeatherSchema = z.object({
-  currentTemperature: z.number().describe('The current temperature in Celsius.'),
-  humidity: z.number().describe('The current humidity percentage.'),
-  weatherCondition: z.string().describe('The current weather condition (e.g., sunny, rainy).'),
-  temperatureForecast: z
-    .array(z.object({temperature: z.number(), date: z.string()}))
-    .describe('A list of temperature forecasts for the next few days.'),
-});
 
 const HistoricalOutcomeSchema = z.object({
   cropType: z.string().describe('The type of crop that was planted.'),

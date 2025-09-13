@@ -9,8 +9,9 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
-import { part, History, MessageData } from 'genkit';
-import { dummyWeather } from '@/lib/dummy-data';
+import { part, History } from 'genkit';
+import { getWeather } from '@/ai/tools/weather';
+
 
 const ChatInputSchema = z.object({
     message: z.string().describe("The user's message."),
@@ -49,8 +50,6 @@ const chatFlow = ai.defineFlow(
             location: "Central Valley, California",
             cropPreference: "High-yield cash crop"
         };
-        
-        const weather = dummyWeather;
 
         const systemPrompt = `You are an expert agricultural advisor bot named Kisaan.
 Your goal is to provide helpful and accurate information to farmers.
@@ -65,26 +64,21 @@ When you respond, you must also select the appropriate voice for the language yo
 - Marathi: 'Spica'
 - Telugu: 'Canopus'
 
-Here is the user's farm information. Use this to answer their questions about their farm, crops, soil, and weather.
+If the user asks about the weather, you must use the getWeather tool to get the current conditions for their farm's location.
+
+Here is the user's farm information. Use this to answer their questions about their farm, crops, and soil.
 
 Farm Profile:
 - Location: ${farmProfile.location}
 - Size: ${farmProfile.farmSize} acres
 - SoilType: ${farmProfile.soilType}
 - Crop Preference: ${farmProfile.cropPreference}
-
-Current Weather:
-- Temperature: ${weather.currentTemperature}°C
-- Humidity: ${weather.humidity}%
-- Condition: ${weather.weatherCondition}
-
-3-Day Forecast:
-${weather.temperatureForecast.map(f => `- ${f.date}: ${f.temperature}°C`).join('\n')}
 `;
 
         const llmResponse = await ai.generate({
             prompt: input.message,
             history: history,
+            tools: [getWeather],
             config: {
                 system: systemPrompt,
             },
