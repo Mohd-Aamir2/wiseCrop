@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -8,13 +9,21 @@ import { ArrowUp, ArrowDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function MarketPriceList() {
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLastUpdated(new Date().toLocaleTimeString());
+  }, []);
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Crop Market Prices</CardTitle>
-        <CardDescription>
-          Last updated: {new Date().toLocaleTimeString()}
-        </CardDescription>
+        {lastUpdated && (
+          <CardDescription>
+            Last updated: {lastUpdated}
+          </CardDescription>
+        )}
       </CardHeader>
       <CardContent>
         <Table>

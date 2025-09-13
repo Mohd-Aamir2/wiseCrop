@@ -3,11 +3,15 @@
 import { useState, useEffect } from 'react';
 
 export function Copyright() {
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [year, setYear] = useState<number | null>(null);
 
   useEffect(() => {
     setYear(new Date().getFullYear());
   }, []);
+
+  if (!year) {
+    return null;
+  }
 
   return (
     <p className="text-sm text-muted-foreground mt-4 sm:mt-0">&copy; {year} CropWise. All rights reserved.</p>
