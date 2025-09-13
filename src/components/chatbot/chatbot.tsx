@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Send, Bot, User, Loader2 } from "lucide-react";
+import { Send, Bot, User, Loader2, Volume2 } from "lucide-react";
 
 const chatSchema = z.object({
   message: z.string().min(1, "Message cannot be empty."),
@@ -23,6 +23,7 @@ type Message = {
   id: string;
   text: string;
   sender: "user" | "bot";
+  audio?: string;
 };
 
 export function Chatbot() {
@@ -31,6 +32,7 @@ export function Chatbot() {
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const form = useForm<z.infer<typeof chatSchema>>({
     resolver: zodResolver(chatSchema),
@@ -45,6 +47,14 @@ export function Chatbot() {
         if (viewport) {
             viewport.scrollTop = viewport.scrollHeight;
         }
+    }
+  }, [messages]);
+  
+  useEffect(() => {
+    const lastMessage = messages[messages.length - 1];
+    if (lastMessage?.sender === "bot" && lastMessage.audio && audioRef.current) {
+      audioRef.current.src = lastMessage.audio;
+      audioRef.current.play().catch(e => console.error("Audio playback failed:", e));
     }
   }, [messages]);
 
@@ -70,8 +80,9 @@ export function Chatbot() {
       
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: botResponse.response,
+        text: botResponse.text,
         sender: "bot",
+        audio: botResponse.audio,
       };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
@@ -85,6 +96,13 @@ export function Chatbot() {
       setIsLoading(false);
     }
   }
+
+  const playAudio = (audioData: string) => {
+    if (audioRef.current) {
+      audioRef.current.src = audioData;
+      audioRef.current.play().catch(e => console.error("Audio playback failed:", e));
+    }
+  };
 
   return (
     <div className="h-full flex flex-col">
@@ -107,8 +125,18 @@ export function Chatbot() {
                                         <AvatarFallback><Bot /></AvatarFallback>
                                     </Avatar>
                                 )}
-                                <div className={cn("rounded-lg px-4 py-2 max-w-[80%] whitespace-pre-wrap", message.sender === "user" ? "bg-primary text-primary-foreground" : "bg-muted")}>
+                                <div className={cn("rounded-lg px-4 py-2 max-w-[80%] whitespace-pre-wrap flex items-center gap-2", message.sender === "user" ? "bg-primary text-primary-foreground" : "bg-muted")}>
                                     <p className="text-sm">{message.text}</p>
+                                     {message.sender === 'bot' && message.audio && (
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            className="h-6 w-6"
+                                            onClick={() => playAudio(message.audio!)}
+                                        >
+                                            <Volume2 className="h-4 w-4" />
+                                        </Button>
+                                    )}
                                 </div>
                                 {message.sender === "user" && (
                                     <Avatar className="h-8 w-8">
@@ -153,6 +181,7 @@ export function Chatbot() {
                 </div>
             </CardContent>
         </Card>
+        <audio ref={audioRef} className="hidden" />
     </div>
   );
 }

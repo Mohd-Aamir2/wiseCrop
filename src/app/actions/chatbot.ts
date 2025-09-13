@@ -1,14 +1,34 @@
 "use server";
 
-import { chat, type ChatOutput, type ChatInput } from "@/ai/flows/chatbot";
+import { chat, type ChatOutput } from "@/ai/flows/chatbot";
+import { textToSpeech } from "@/ai/flows/tts";
 
-export async function sendMessage(message: string, history: any[]): Promise<ChatOutput> {
+export type ChatResponse = {
+  text: string;
+  audio?: string;
+};
+
+export async function sendMessage(message: string, history: any[]): Promise<ChatResponse> {
   try {
-    const input: ChatInput = { message, history };
-    const response = await chat(input);
-    return response;
+    const input = { message, history };
+    const chatResponse = await chat(input);
+    
+    if (!chatResponse.response) {
+       return { text: "I'm sorry, I couldn't generate a response." };
+    }
+
+    const ttsResponse = await textToSpeech({ text: chatResponse.response });
+
+    return {
+      text: chatResponse.response,
+      audio: ttsResponse.audio,
+    };
   } catch (error) {
     console.error("Error sending message to chatbot:", error);
-    throw new Error("Failed to get response from chatbot.");
+    // In case of an error, we still want to return a text response
+    // so the user knows something went wrong.
+    return {
+      text: "I'm sorry, an error occurred. Please try again.",
+    };
   }
 }
