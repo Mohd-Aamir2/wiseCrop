@@ -1,4 +1,4 @@
-import type { Weather, HistoricalOutcome, MarketPrice } from '@/lib/types';
+import type { Weather, HistoricalOutcome, MarketPrice, GovernmentScheme } from '@/lib/types';
 
 export const dummyWeather: Weather = {
   currentTemperature: 28,
@@ -58,4 +58,49 @@ export const dummyMarketPrices: MarketPrice[] = [
     { id: '6', crop: 'Sugarcane', price: 315, unit: 'quintal', change: 0.3, location: 'Pune' },
     { id: '7', crop: 'Tomato', price: 25, unit: 'kg', change: 5.5, location: 'Kolkata' },
     { id: '8', crop: 'Onion', price: 30, unit: 'kg', change: -2.3, location: 'Nashik' },
+];
+
+export const dummySchemes: GovernmentScheme[] = [
+    {
+        id: '1',
+        title: 'Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)',
+        description: 'Provides income support of ₹6,000 per year to all landholding farmer families.',
+        eligibility: 'All landholding farmer families with cultivable land.',
+        link: 'https://pmkisan.gov.in/',
+    },
+    {
+        id: '2',
+        title: 'Pradhan Mantri Fasal Bima Yojana (PMFBY)',
+        description: 'An insurance service for farmers for their yields.',
+        eligibility: 'All farmers including sharecroppers and tenant farmers growing notified crops in notified areas.',
+        link: 'https://pmfby.gov.in/',
+    },
+    {
+        id: '3',
+        title: 'Kisan Credit Card (KCC) Scheme',
+        description: 'Provides farmers with timely access to credit for their cultivation and other needs.',
+        eligibility: 'All farmers, including small and marginal farmers, sharecroppers, and tenants.',
+        link: 'https://www.sbi.co.in/web/agri-rural/agriculture-banking/crop-finance/kisan-credit-card',
+    },
+     {
+        id: '4',
+        title: 'National Mission for Sustainable Agriculture (NMSA)',
+        description: 'Aims to enhance agricultural productivity especially in rainfed areas focusing on integrated farming, water use efficiency, and soil health management.',
+        eligibility: 'Varies by sub-mission, generally available to all farmers.',
+        link: 'https://nmsa.dac.gov.in/',
+    },
+    {
+        id: '5',
+        title: 'Soil Health Card Scheme',
+        description: 'Provides every farmer with a soil health card, which will help them to improve soil health and increase productivity.',
+        eligibility: 'Available to all farmers across the country.',
+        link: 'https://soilhealth.dac.gov.in/',
+    },
+    {
+        id: '6',
+        title: 'Paramparagat Krishi Vikas Yojana (PKVY)',
+        description: 'Promotes organic farming through the adoption of organic village by cluster approach and PGS certification.',
+        eligibility: 'Any farmer willing to take up organic farming.',
+        link: 'https://pgsindia-ncof.gov.in/pkvy/index.aspx',
+    }
 ];

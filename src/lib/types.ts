@@ -22,3 +22,11 @@ export interface MarketPrice {
   change: number;
   location: string;
 }
+
+export interface GovernmentScheme {
+  id: string;
+  title: string;
+  description: string;
+  eligibility: string;
+  link: string;
+}
