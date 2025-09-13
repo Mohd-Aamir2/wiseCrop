@@ -6,6 +6,7 @@ import { Logo } from '@/components/logo';
 import { CheckCircle2, Lightbulb, Bell, BarChart2 } from 'lucide-react';
 import { Copyright } from '@/components/copyright';
 import { LanguageSelector } from '@/components/language-selector';
+import { FloatingChatbot } from '@/components/chatbot/floating-chatbot';
 
 export default function Home() {
   const features = [
@@ -158,6 +159,7 @@ export default function Home() {
           <Copyright />
         </div>
       </footer>
+      <FloatingChatbot />
     </div>
   );
 }

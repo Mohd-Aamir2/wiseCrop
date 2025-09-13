@@ -27,12 +27,17 @@ type Message = {
 };
 
 export function Chatbot() {
-  const [messages, setMessages] = useState<Message[]>([
-    { id: "1", text: "Hello! How can I help you today?", sender: "bot" }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    // Send an initial message from the bot
+    setMessages([
+        { id: "1", text: "Hello! How can I help you today?", sender: "bot" }
+    ]);
+  }, []);
 
   const form = useForm<z.infer<typeof chatSchema>>({
     resolver: zodResolver(chatSchema),
@@ -106,17 +111,17 @@ export function Chatbot() {
 
   return (
     <div className="h-full flex flex-col">
-        <Card className="flex-1 flex flex-col h-full">
-            <CardHeader>
+        <Card className="flex-1 flex flex-col h-full shadow-none border-0 rounded-b-none">
+            <CardHeader className="rounded-t-xl bg-muted/50">
                 <CardTitle className="flex items-center gap-2">
                     <Bot /> AI Assistant
                 </CardTitle>
                 <CardDescription>
-                    This is a smart assistant that can help you with your farming questions.
+                    Your smart farming assistant.
                 </CardDescription>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col gap-4 overflow-hidden p-0">
-                <ScrollArea className="flex-1 p-6" ref={scrollAreaRef}>
+                <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
                     <div className="space-y-4">
                         {messages.map((message) => (
                             <div key={message.id} className={cn("flex items-start gap-3", message.sender === "user" ? "justify-end" : "justify-start")}>
@@ -125,7 +130,7 @@ export function Chatbot() {
                                         <AvatarFallback><Bot /></AvatarFallback>
                                     </Avatar>
                                 )}
-                                <div className={cn("rounded-lg px-4 py-2 max-w-[80%] whitespace-pre-wrap flex items-center gap-2", message.sender === "user" ? "bg-primary text-primary-foreground" : "bg-muted")}>
+                                <div className={cn("rounded-lg px-4 py-2 max-w-[80%] whitespace-pre-wrap flex items-center gap-2", message.sender === "user" ? "bg-primary text-primary-foreground" : "bg-secondary")}>
                                     <p className="text-sm">{message.text}</p>
                                      {message.sender === 'bot' && message.audio && (
                                         <Button
@@ -157,7 +162,7 @@ export function Chatbot() {
                         )}
                     </div>
                 </ScrollArea>
-                <div className="p-4 border-t">
+                <div className="p-4 border-t bg-muted/50 rounded-b-xl">
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center gap-2">
                             <FormField
