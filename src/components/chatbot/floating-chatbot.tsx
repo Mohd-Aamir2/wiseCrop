@@ -9,7 +9,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Chatbot } from "@/components/chatbot/chatbot";
-import { MessageSquare, X } from "lucide-react";
+import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function FloatingChatbot() {
@@ -18,41 +18,52 @@ export function FloatingChatbot() {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button
-          variant="secondary"
-          className="fixed bottom-8 right-8 h-16 w-16 rounded-full shadow-lg z-40 p-0 overflow-hidden"
-          aria-label="Toggle Chatbot"
-        >
-          <AnimatePresence>
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ scale: 0, rotate: -90 }}
-                animate={{ scale: 1, rotate: 0 }}
-                exit={{ scale: 0, rotate: 90 }}
-              >
-                <X className="w-8 h-8" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="open"
-                initial={{ scale: 0, rotate: 90 }}
-                animate={{ scale: 1, rotate: 0 }}
-                exit={{ scale: 0, rotate: -90 }}
-              >
-                <Image
-                  src="https://picsum.photos/seed/bot/100/100"
-                  alt="AI Chatbot"
-                  data-ai-hint="robot face"
-                  width={100}
-                  height={100}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </Button>
+        <div className="fixed top-24 right-12 z-40 flex flex-col items-center gap-2">
+          {/* Chatbot button */}
+          <Button
+            variant="secondary"
+            className="h-20 w-20 shadow-lg p-0 overflow-hidden 
+                       bg-amber-500 border 2px rounded-[50%] 
+                       drop-shadow-[0_0px_50px_rgba(255,191,0,1)]"
+            aria-label="Toggle Chatbot"
+          >
+            <AnimatePresence>
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ scale: 0, rotate: -90 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  exit={{ scale: 0, rotate: 90 }}
+                >
+                  <X className="w-8 h-8" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="open"
+                  initial={{ scale: 0, rotate: 90 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  exit={{ scale: 0, rotate: -90 }}
+                >
+                  <Image
+                    src="https://thumbs.dreamstime.com/b/old-indian-farmer-sows-rice-field-vector-illustration-flat-cartoon-style-239898621.jpg"
+                    alt="AI Chatbot"
+                    data-ai-hint="robot face"
+                    width={100}
+                    height={100}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </Button>
+
+          {/* Title below circle */}
+          <span className="text font-bold text-amber-700">
+            AI KAKA
+          </span>
+        </div>
       </PopoverTrigger>
+
       <PopoverContent
         side="top"
         align="end"
@@ -60,7 +71,7 @@ export function FloatingChatbot() {
         style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
       >
         <div className="h-full flex flex-col">
-           <Chatbot />
+          <Chatbot />
         </div>
       </PopoverContent>
     </Popover>

@@ -86,3 +86,10 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .gradient-title {
+    @apply  bg-gradient-to-br from-green-800 to-green-400 font-extrabold tracking-tighter pr-2 pb-2 text-transparent bg-clip-text animate-pulse;
+  }
+  
+}  

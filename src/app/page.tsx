@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <header className=" mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center fixed top-0 w-full bg-grey/80 backdrop-blur-md z-50 border-b">
         <Logo />
         <nav className="flex items-center gap-2">
           <LanguageSelector />
@@ -58,7 +58,7 @@ export default function Home() {
           </div>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-gray-900 dark:text-white">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-gray-900 dark:text-white gradient-title">
                 AI-Powered Smart Crop Advisory for Modern Farmers
               </h1>
               <p className="mt-6 text-lg text-gray-600 dark:text-gray-300">
@@ -78,7 +78,7 @@ export default function Home() {
                 src="https://media.istockphoto.com/id/806276128/photo/farmer-ploughing-rice-field-at-sunrise.jpg?s=612x612&w=0&k=20&c=t5IUOH9GWrI1lAz4gXPJnwjR9WUxQxdmSnIJxk_XDiQ="
                 alt="Farmer ploughing a rice field with two cattle at sunrise."
                 data-ai-hint="farmer ploughing"
-                width={1200}
+                width={1400}
                 height={600}
                 className="rounded-xl shadow-2xl mx-auto object-cover h-[600px]"
               />
@@ -158,7 +158,7 @@ export default function Home() {
           <Logo />
           <Copyright />
         </div>
-      </footer>
+      </footer> 
       <FloatingChatbot />
     </div>
   );
