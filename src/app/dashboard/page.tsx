@@ -1,5 +1,5 @@
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
-import { WeatherWidget } from "@/components/dashboard/weather-widget";
+import {WeatherWidget} from "@/components/dashboard/weather-widget"
 import { SoilHealthWidget } from "@/components/dashboard/soil-health-widget";
 import { HistoricalDataWidget } from "@/components/dashboard/historical-data-widget";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
